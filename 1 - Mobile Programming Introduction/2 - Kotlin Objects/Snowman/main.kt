@@ -1,12 +1,9 @@
 // Code by Ryan Scott
 
 // Make Snowman class
-class Snowman(var name: String, var age: Int, var hasTopHat: Boolean, var weight: Float, var color: String) {
-    var ID:Int = age
-    var name:String = name
-    var hasTopHat:Boolean = hasTopHat
-    var dateOfBirth:DateTime = DateTime.now()
-    var weight:Float = weight
+class Snowman(val name: String, val age: Int, val hasTopHat: Boolean, val weight: Float) {
+    val ID:Int = age
+    val dateOfBirth: String = java.time.LocalDateTime.now().toString()
 
     fun printSnowman() {
         println("Snowman: $name")
@@ -20,6 +17,6 @@ class Snowman(var name: String, var age: Int, var hasTopHat: Boolean, var weight
 fun main(args: Array<String>) {
     println("Welcome to SnowManager!")
     // Make Snowman
-    var snowman = Snowman("Snowy", 5, true, 10.0f, "White")
+    val snowman = Snowman("Snowy", 5, true, 10.0f)
     snowman.printSnowman()
 }
