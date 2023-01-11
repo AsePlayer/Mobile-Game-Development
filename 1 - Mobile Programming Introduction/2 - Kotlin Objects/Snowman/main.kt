@@ -31,6 +31,10 @@ class Snowman(val name: String, val age: Int, val hasTopHat: Boolean, val weight
         snowmanID = newID
     }
 
+    fun getID(): Int {
+        return snowmanID
+    }
+
     // method to update the snowman's properties
     fun updateSnowman(name: String, age: Int, hasTopHat: Boolean, weight: Float) {
         snowmanName = name
@@ -84,6 +88,7 @@ fun main(args: Array<String>) {
                 newSnowman.setID(++snowmanID)
                 // add the new snowman to the list
                 snowmenList.add(newSnowman)
+                println("Created new Snowman: $name with ID: $snowmanID")
             }
             2 -> {
                 // Display all snowmen in the inventory
@@ -121,8 +126,10 @@ fun main(args: Array<String>) {
                 val inputSnowmanID = Integer.parseInt(readLine())
                 // loop through the list and remove the snowman with the provided ID
                 for (snowman in snowmenList) {
-                    if (snowman.snowmanID == inputSnowmanID) {
+                    if (snowman.getID() == inputSnowmanID) {
+                        println("Removed Snowman: ${snowman.snowmanName}. Rest in peace :(")
                         snowmenList.remove(snowman)
+                        break
                     }
                 }
             }
