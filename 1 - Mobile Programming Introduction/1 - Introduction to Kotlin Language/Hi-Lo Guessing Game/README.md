@@ -1,6 +1,6 @@
 Code can be easily ran online at: https://www.tutorialspoint.com/online_kotlin_compiler.php
 ----
-Programming Challenge 1
+# Programming Challenge 1
 1. Create a Hi Lo guessing game in Kotlin using IntelliJ or VS Code.
 
 Demonstrate the use of:
