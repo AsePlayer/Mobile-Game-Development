@@ -9,17 +9,17 @@ interface JokesViewModelInterface {
     var jokesSearchResult : MutableList<JokeModel>
 
     // get all jokes from the repository.
-    fun getAllJokes()
+    fun getAllJokes() : Unit
 
     // add a joke to the repository.
-    fun addJoke(joke: JokeModel)
+    fun addJoke(joke: JokeModel) : Unit
 
     // remove a joke.
-    fun removeJoke(joke : JokeModel)
+    fun removeJoke(joke : JokeModel) : Unit
 
     // fetch jokes by a key phrase
-    fun findJokesByKeyword(findPhrase : String)
+    fun findJokesByKeyword(findPhrase : String) : Unit
 
     // toggle a joke visible status from true to false / false to true
-    fun hideShowJoke(joke : JokeModel)
+    fun hideShowJoke(joke : JokeModel) : Unit
 }
