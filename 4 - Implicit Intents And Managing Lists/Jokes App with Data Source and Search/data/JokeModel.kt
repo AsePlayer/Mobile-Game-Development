@@ -1,5 +1,7 @@
 package com.ryan.jokesapp.data
 
+import android.util.Log
+
 class JokeModel(
     val id: Int,
     var question: String,
@@ -7,7 +9,12 @@ class JokeModel(
     var answerIsVisible: Boolean
 ) {
     fun copy(answerIsVisible: Boolean): JokeModel {
-        this.answerIsVisible = answerIsVisible
-        return this
+        Log.d("JokeModel",this.answerIsVisible.toString())
+        return JokeModel(
+            this.id,
+            this.question,
+            this.answer,
+            answerIsVisible
+        )
     }
 }
