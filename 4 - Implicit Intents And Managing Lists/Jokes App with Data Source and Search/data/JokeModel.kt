@@ -3,7 +3,7 @@ package com.ryan.jokesapp.data
 import android.util.Log
 
 class JokeModel(
-    val id: Int,
+    var id: Int,
     var question: String,
     var answer: String,
     var answerIsVisible: Boolean
