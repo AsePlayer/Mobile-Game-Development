@@ -21,6 +21,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import com.ryan.jokesapp.components.DataEntryForm
+import com.ryan.jokesapp.components.Joke1
 import com.ryan.jokesapp.data.JokeModel
 import com.ryan.jokesapp.data.inmemory.ViewModelInMemory
 import com.ryan.jokesapp.ui.theme.JokesAppTheme
@@ -64,46 +66,7 @@ class MainActivity : ComponentActivity() {
             color = MaterialTheme.colors.background
         ) {
             Column() {
-                // Text input field for entering jokes
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    value = jokeText,
-                    onValueChange = { jokeText = it },
-                    label = { Text("Enter a joke") }
-                )
-                OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    value = jokePunchlineText,
-                    onValueChange = { jokePunchlineText = it },
-                    label = { Text("Enter a punchline") }
-                )
-
-                // Button to add the joke to the list
-                Button(
-                    modifier = Modifier
-                        .align(Alignment.End)
-                        .padding(16.dp),
-                    onClick = {
-                        val newJoke =
-                            JokeModel(
-                                jokesList.size,
-                                jokeText,
-                                jokePunchlineText,
-                                true
-                            )
-
-                        doAddJoke(newJoke)
-                        jokeText = "" // clear the input field
-                        jokePunchlineText = "" // clear the input field
-                    }
-                ) {
-                    Text("Add Joke")
-                }
-
+                DataEntryForm(doAddJoke = doAddJoke as (JokeModel) -> JokeModel)
                 LazyColumn() {
                     //Log.d("Main", "MainScreen: show all ${jokesList.size} jokes")
 
@@ -119,34 +82,5 @@ class MainActivity : ComponentActivity() {
             } // column
         } // surface
     } // main screen
-
-
-    @Composable
-    fun Joke1(joke: JokeModel, changeVisibility: (id: Int) -> Unit) {
-        Text(
-            text = "Joke #${joke.id}"
-        )
-        Text(
-            modifier = Modifier
-                .padding(10.dp)
-                .clickable {
-                    changeVisibility(joke.id)
-                    Log.d("Joke Tag", "Joke1: $joke")
-                },
-            color = Color.DarkGray,
-            fontSize = 36.sp,
-            textAlign = TextAlign.Center,
-            text = joke.question
-        )
-        if (joke.answerIsVisible) {
-            Text(
-                modifier = Modifier.padding(10.dp).background(Color.LightGray).fillMaxWidth(),
-                color = Color.Red,
-                fontSize = 5.em,
-                text = joke.answer
-            )
-        }
-        Divider()
-    }
 } // main activity
 
