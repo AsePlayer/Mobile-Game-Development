@@ -50,6 +50,7 @@ class ViewModelInMemory : JokesViewModelInterface, ViewModel() {
     }
 
     override fun addJoke(joke: JokeModel) {
+        joke.id = jokesList.size
         jokesList.add(joke)
     }
 
@@ -90,6 +91,7 @@ class ViewModelInMemory : JokesViewModelInterface, ViewModel() {
         if(position >= 0)
             jokesList[position] = jokesList[position].copy(answerIsVisible = true)
 
+
         // repeat the process for the search results list
         for(j in jokesSearchResult) {
             j.answerIsVisible = false
@@ -102,5 +104,8 @@ class ViewModelInMemory : JokesViewModelInterface, ViewModel() {
         if(position2 >= 0)
             jokesSearchResult[position2] = jokesSearchResult[position2].copy(answerIsVisible = true)
 
+    }
+    public fun getJokeTotal() : Int {
+        return jokesList.size
     }
 }
