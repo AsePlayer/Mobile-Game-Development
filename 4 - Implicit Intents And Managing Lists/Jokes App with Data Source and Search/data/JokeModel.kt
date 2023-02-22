@@ -5,4 +5,9 @@ class JokeModel(
     var question: String,
     var answer: String,
     var answerIsVisible: Boolean
-)
+) {
+    fun copy(answerIsVisible: Boolean): JokeModel {
+        this.answerIsVisible = answerIsVisible
+        return this
+    }
+}
