@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.ryan.jokesapp.components.DataEntryForm
 import com.ryan.jokesapp.components.Joke1
+import com.ryan.jokesapp.components.SearchForm
 import com.ryan.jokesapp.data.JokeModel
 import com.ryan.jokesapp.data.inmemory.ViewModelInMemory
 import com.ryan.jokesapp.ui.theme.JokesAppTheme
@@ -67,17 +68,29 @@ class MainActivity : ComponentActivity() {
         ) {
             Column() {
                 DataEntryForm(doAddJoke = doAddJoke as (JokeModel) -> JokeModel)
+                SearchForm(doSearch = doSearch)
                 LazyColumn() {
                     //Log.d("Main", "MainScreen: show all ${jokesList.size} jokes")
-
-                    items(jokesList.size) {index ->
-                        Joke1(
-                            joke = jokesList[index]
-                        ) {
-                            Log.d("Main","Show ${index}")
-                            doShowHide(jokesList[index])
+                    if(jokesSearchResult.isNotEmpty()) {
+                        items(jokesSearchResult.size) { index ->
+                            Joke1(
+                                joke = jokesSearchResult[index]
+                            ) {
+                                Log.d("Main", "Show ${index}")
+                                doShowHide(jokesSearchResult[index])
+                            }
+                        } // items
+                    } //if
+                    else {
+                        // show all jokes
+                        items(jokesList.size) { index ->
+                            Joke1(
+                                joke = jokesList[index]
+                            ) {
+                                doShowHide(jokesList[index])
+                            }
                         }
-                    } // items
+                    } // else
                 } // lazy column
             } // column
         } // surface
