@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVDate1"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="3dp" />
 
         <!--text view for displaying the selected date-->
         <TextView
@@ -36,21 +36,39 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="center"
-            android:padding="8dp"
             android:text="Current Date"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_below="@id/calendarView1"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="-30dp" />
 
         <CalendarView
             android:id="@+id/calendarView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVDate2"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="3dp" />
 
+        <Button
+            android:id="@+id/calculateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate Time Difference"
+            android:layout_below="@+id/calendarView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:onClick="calculateTimeDifference" />
+
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calculateButton"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"/>
     </RelativeLayout>
 </ScrollView>

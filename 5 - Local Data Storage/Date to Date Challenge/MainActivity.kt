@@ -1,25 +1,14 @@
 package com.ryan.datetodatechallenge
 
-import android.app.DatePickerDialog
-import android.content.Context
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.ryan.datetodatechallenge.components.ShowFriendCountEntry
-import com.ryan.datetodatechallenge.components.ShowTipPercentSlider
-import com.ryan.datetodatechallenge.components.ShowTotals
-import com.ryan.datetodatechallenge.ui.theme.DateToDateChallengeTheme
-import com.ryan.tipcalculator.components.*
 import java.util.*
-
 import android.widget.CalendarView
-import android.widget.CalendarView.OnDateChangeListener
 import android.widget.TextView
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
 
@@ -30,9 +19,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MyApp()
-        }
         setContentView(R.layout.activity_main)
 
         // Find the views by their IDs
@@ -53,5 +39,25 @@ class MainActivity : ComponentActivity() {
             val dateString = "${month+1}/$dayOfMonth/$year"
             dateTV2.text = dateString
         }
+
+        val resultTextView: TextView = findViewById(R.id.resultTextView)
+        val calculateButton: Button = findViewById(R.id.calculateButton)
+        calculateButton.setOnClickListener { calculateTimeDifference(it, dateTV1, dateTV2, resultTextView) }
     }
+}
+
+fun calculateTimeDifference(view: View, dateTV1: TextView, dateTV2: TextView, resultTextView: TextView) {
+    val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+    val date1 = dateFormat.parse(dateTV1.text.toString())
+    val date2 = dateFormat.parse(dateTV2.text.toString())
+
+    val diffInMilliSec = date2.time - date1.time
+    val diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMilliSec)
+    val diffInWeeks = diffInDays / 7
+    val diffInMonths = (diffInDays / 30.4368).toInt()
+    val diffInYears = (diffInDays / 365.2425).toInt()
+
+    val result = "In Years: $diffInYears\nIn Months: $diffInMonths\nIn Weeks: $diffInWeeks\nIn Days: $diffInDays\n"
+
+    resultTextView.text = result
 }
