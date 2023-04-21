@@ -1,6 +1,7 @@
 package com.ryan.jokesapp.data
 
 import android.util.Log
+import com.ryan.jokesapp.data.room.JokeEntity
 
 class JokeModel(
     var id: Int,
@@ -16,5 +17,10 @@ class JokeModel(
             this.answer,
             answerIsVisible
         )
+    }
+
+    // used to convert a model into an Entity
+    fun toEntity() : JokeEntity {
+        return JokeEntity(id, question, answer)
     }
 }

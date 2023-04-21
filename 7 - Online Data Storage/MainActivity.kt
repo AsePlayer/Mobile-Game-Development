@@ -26,7 +26,7 @@ import com.ryan.jokesapp.components.Joke1
 import com.ryan.jokesapp.components.SearchForm
 import com.ryan.jokesapp.data.JokeModel
 import com.ryan.jokesapp.data.inmemory.ViewModelInMemory
-import com.ryan.jokesapp.data.inmemory.sqlite.JokesViewmodelSQLite
+import com.ryan.jokesapp.data.sqlite.JokesViewmodelSQLite
 import com.ryan.jokesapp.ui.theme.JokesAppTheme
 
 class MainActivity : ComponentActivity() {
